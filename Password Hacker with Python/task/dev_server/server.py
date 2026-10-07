@@ -2,12 +2,15 @@ import socket
 from typing import Final
 
 BUFFER_SIZE: Final[int] = 1024
+SERVER_ADDRESS = "localhost"
+SERVER_PORT = 9090
 
 def run_server():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         print("Server started")
-        server_socket.bind(('localhost', 9090))
+        server_socket.bind((SERVER_ADDRESS, SERVER_PORT))
         server_socket.listen(1)
+
         while True:
             conn, addr = server_socket.accept()
             print(f"Connected {addr}")
